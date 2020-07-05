@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
-import Login from './Components/Login'
+import Image from './images/covid.png'
+import Header from './Components/header'
 
 function App() {
   return (
     <div className="App">
-      <h1>COVID-19 TRACKER</h1>
-      <Login />
+      <Header />
+      <img className = "images" src= {Image} alt ="Covid19" />
     </div>
   );
 }
