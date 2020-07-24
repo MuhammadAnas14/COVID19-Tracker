@@ -4,6 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import { Pie } from 'react-chartjs-2';
+
 
 
 
@@ -63,6 +65,33 @@ const AllCountries = () => {
   }
   else {
     console.log("working")
+    
+    let datas = [findCountry[0].total_cases,findCountry[0].total_active_cases,findCountry[0].total_deaths,findCountry[0].total_recovered]
+    console.log(datas)
+    const data = {
+      labels: [
+        'Red',
+        'Blue',
+        'Yellow'
+      ],
+      datasets: [{
+        data: datas,
+        backgroundColor: [
+        '#FF6384',
+        '#36A2EB',
+        '#FFCE56',
+        '#003445'
+        ],
+        hoverBackgroundColor: [
+        '#FF6384',
+        '#36A2EB',
+        '#FFCE56',
+        '#003445'
+        ]
+      }]
+    };
+
+
     details = (
     
     <div className={classes.rootgrid}>
@@ -92,6 +121,11 @@ const AllCountries = () => {
           </Paper>
         </Grid>
       </Grid>
+   
+    <div>
+      <h2>Pie Example</h2>
+      <Pie data={data} />
+    </div>
     </div>
     )
   }
