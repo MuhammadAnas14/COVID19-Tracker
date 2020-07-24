@@ -7,7 +7,6 @@ const Cards = () => {
 
   return (
     <Container maxWidth="sm">
-      <
     </Container>
   ) 
 }
