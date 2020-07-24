@@ -27,12 +27,10 @@ const FetchGlobalStats= ()=>{
       // console.log(data)
       delete data.results[0].source;
       setGlobalStats(data.results[0])
-      // console.log(data.results[0])  
-
+      
     }
     getGlobalData();
   }, [])
-  // console.log(globalStats)  
   const classes = useStyles();
 
   return (

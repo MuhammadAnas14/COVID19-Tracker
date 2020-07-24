@@ -31,11 +31,17 @@ const AllCountries = () => {
   const [countriesTitle, setcountriesTitle] = useState("")
   const [globalData,setGlobalData]= useState([{}])
 
+  
 
   const handleChange = (event) => {
     setcountriesTitle(event.target.value);
+
   };
 
+  const submitHandler = () => {
+    const findCountry = globalData.filter(country => country.title === countriesTitle)
+    console.log("SSS: ",findCountry)
+  }
   useEffect(()=> {
     async function getCountriesData() {
       const response = await fetch ("https://api.thevirustracker.com/free-api?countryTotals=ALL");
@@ -46,6 +52,49 @@ const AllCountries = () => {
     getCountriesData()
   },[])
   console.log(globalData)
+  // console.log(countriesTitle)
+  const findCountry = globalData.filter(country => country.title === countriesTitle)
+  // let foundCountry= findCountry[0]
+  // console.log(foundCountry)
+  let details = ""
+  if (findCountry.length === 0){
+    console.log('loading')
+    
+  }
+  else {
+    console.log("working")
+    details = (
+    
+    <div className={classes.rootgrid}>
+      <Grid container spacing={3}>
+        <Grid item xs={6} sm={3}>
+          <Paper className={classes.paper}>
+            <h2>Total Cases</h2>
+            <h3>{findCountry[0].total_cases}</h3>
+          </Paper>
+        </Grid>
+        <Grid item xs={6} sm={3}>
+          <Paper className={classes.paper}>
+            <h2>Active Cases</h2>
+            <h3>{findCountry[0].total_active_cases}</h3>
+          </Paper>
+        </Grid>
+        <Grid item xs={6} sm={3}>
+          <Paper className={classes.paper}>
+            <h2>Total Death</h2>
+            <h3>{findCountry[0].total_deaths}</h3>
+          </Paper>
+        </Grid>
+        <Grid item xs={6} sm={3}>
+          <Paper className={classes.paper}>
+          <h2>Total Recovered</h2>
+            <h3>{findCountry[0].total_recovered}</h3>
+          </Paper>
+        </Grid>
+      </Grid>
+    </div>
+    )
+  }
 
   return(
     <form className={classes.root} noValidate autoComplete="off">
@@ -64,23 +113,9 @@ const AllCountries = () => {
             </MenuItem>
           ))}
         </TextField>
+        
       </div>
-      <div className={classes.rootgrid}>
-      <Grid container spacing={3}>
-        <Grid item xs={6} sm={3}>
-          <Paper className={classes.paper}></Paper>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Paper className={classes.paper}>xs=6 sm=3</Paper>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Paper className={classes.paper}>xs=6 sm=3</Paper>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Paper className={classes.paper}>xs=6 sm=3</Paper>
-        </Grid>
-      </Grid>
-    </div>
+      {details}
     </form>
     
   )
