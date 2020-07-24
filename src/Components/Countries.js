@@ -40,10 +40,6 @@ const AllCountries = () => {
 
   };
 
-  const submitHandler = () => {
-    const findCountry = globalData.filter(country => country.title === countriesTitle)
-    console.log("SSS: ",findCountry)
-  }
   useEffect(()=> {
     async function getCountriesData() {
       const response = await fetch ("https://api.thevirustracker.com/free-api?countryTotals=ALL");
