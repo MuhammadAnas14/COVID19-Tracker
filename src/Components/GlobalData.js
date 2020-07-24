@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
-function FetchGlobalStats(){
+const FetchGlobalStats= ()=>{
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,15 +24,15 @@ function FetchGlobalStats(){
     async function getGlobalData() {
       const response = await fetch("https://cors-anywhere.herokuapp.com/https://thevirustracker.com/free-api?global=stats");
       const data = await response.json()
-      console.log(data)
+      // console.log(data)
       delete data.results[0].source;
       setGlobalStats(data.results[0])
-      console.log(data.results[0])  
+      // console.log(data.results[0])  
 
     }
     getGlobalData();
   }, [])
-  console.log(globalStats)  
+  // console.log(globalStats)  
   const classes = useStyles();
 
   return (
